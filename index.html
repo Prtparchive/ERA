@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financy | Premium Finance Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Menu Toggle (Mobile) -->
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-wallet"></i></div>
+                <span>Financy</span>
+            </div>
+            
+            <div class="nav-item active" data-view="dashboard">
+                <i class="fas fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </div>
+            
+            <div class="nav-item" data-view="salary">
+                <i class="fas fa-money-check"></i>
+                <span>Salary</span>
+            </div>
+            
+            <div class="nav-item" data-view="budgets">
+                <i class="fas fa-piggy-bank"></i>
+                <span>Budgets</span>
+            </div>
+            
+            <div class="nav-item" data-view="transactions">
+                <i class="fas fa-exchange-alt"></i>
+                <span>Transactions</span>
+            </div>
+            
+            <div class="nav-item" data-view="goals">
+                <i class="fas fa-bullseye"></i>
+                <span>Goals</span>
+            </div>
+            
+            <div class="nav-item" data-view="export">
+                <i class="fas fa-file-export"></i>
+                <span>Export/Import</span>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard View -->
+            <section id="dashboard" class="view active">
+                <div class="header">
+                    <h1>Financial Dashboard</h1>
+                    <div class="cpi-badge">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Inflation default 4.7% as of 2025-07</span>
+                    </div>
+                </div>
+                
+                <div class="kpi-grid">
+                    <div class="kpi-card animate delay-1">
+                        <div class="kpi-label">Monthly Salary</div>
+                        <div class="kpi-value" id="salary-kpi">₹45,000</div>
+                        <div class="kpi-change">+0% from last month</div>
+                    </div>
+                    
+                    <div class="kpi-card animate delay-2">
+                        <div class="kpi-label">Total Income</div>
+                        <div class="kpi-value positive">₹48,500</div>
+                        <div class="kpi-change">+7.8% from last month</div>
+                    </div>
+                    
+                    <div class="kpi-card animate delay-3">
+                        <div class="kpi-label">Total Expenses</div>
+                        <div class="kpi-value negative">₹32,150</div>
+                        <div class="kpi-change">-2.3% from last month</div>
+                    </div>
+                    
+                    <div class="kpi-card animate delay-4">
+                        <div class="kpi-label">Net</div>
+                        <div class="kpi-value positive">₹16,350</div>
+                        <div class="kpi-change">+24.1% from last month</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fas fa-chart-pie"></i>
+                        Spending by Category
+                    </h2>
+                    <div class="donut-container">
+                        <div class="donut">
+                            <div class="donut-center">₹32,150</div>
+                        </div>
+                        <div class="donut-legend">
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #4361ee;"></div>
+                                <span>Needs (₹16,200)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #7209b7;"></div>
+                                <span>Wants (₹9,650)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #06d6a0;"></div>
+                                <span>Savings (₹4,500)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background-color: #ffd166;"></div>
+                                <span>Other (₹1,800)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fas fa-history"></i>
+                        Recent Transactions
+                    </h2>
+                    <table class="transaction-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-transactions">
+                            <tr>
+                                <td>Aug 30, 2023</td>
+                                <td>Grocery Shopping</td>
+                                <td>Needs</td>
+                                <td class="negative">-₹2,450</td>
+                            </tr>
+                            <tr>
+                                <td>Aug 28, 2023</td>
+                                <td>Freelance Payment</td>
+                                <td>Income</td>
+                                <td class="positive">+₹8,500</td>
+                            </tr>
+                            <tr>
+                                <td>Aug 25, 2023</td>
+                                <td>Electricity Bill</td>
+                                <td>Needs</td>
+                                <td class="negative">-₹1,850</td>
+                            </tr>
+                            <tr>
+                                <td>Aug 22, 2023</td>
+                                <td>Dinner Out</td>
+                                <td>Wants</td>
+                                <td class="negative">-₹1,200</td>
+                            </tr>
+                            <tr>
+                                <td>Aug 20, 2023</td>
+                                <td>Salary</td>
+                                <td>Income</td>
+                                <td class="positive">+₹40,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Salary View -->
+            <section id="salary" class="view">
+                <div class="header">
+                    <h1>Salary Setup</h1>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fas fa-money-check"></i>
+                        Monthly Salary
+                    </h2>
+                    <div class="form-group">
+                        <label for="salary-amount">Salary Amount (₹)</label>
+                        <input type="number" id="salary-amount" placeholder="Enter your monthly salary" value="45000">
+                    </div>
+                    <button id="save-salary" class="pulse">
+                        <i class="fas fa-save"></i>
+                        Save Salary
+                    </button>
+                </div>
+            </section>
+
+            <!-- Budgets View -->
+            <section id="budgets" class="view">
+                <div class="header">
+                    <h1>Budget Management</h1>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fas fa-piggy-bank"></i>
+                        Budget Allocation
+                    </h2>
+                    <div class="form-group">
+                        <label for="budget-preset">Preset Allocation</label>
+                        <select id="budget-preset">
+                            <option value="custom">Custom</option>
+                            <option value="50-30-20" selected>50-30-20 (Needs-Wants-Savings)</option>
+                            <option value="60-20-20">60-20-20 (Needs-Wants-Savings)</option>
+                            <option value="70-20-10">70-20-10 (Needs-Wants-Savings)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="budget-item">
+                        <div class="budget-header">
+                            <span class="budget-title">Needs</span>
+                            <span class="budget-percent" id="needs-percent">50%</span>
+                        </div>
+                        <input type="range" class="budget-slider" id="needs-budget" min="0" max="100" value="50">
+                        <div class="budget-inputs">
+                            <input type="number" id="needs-amount" placeholder="Amount" value="22500" disabled>
+                            <input type="number" id="needs-percent-input" placeholder="Percentage" min="0" max="100" value="50">
+                        </div>
+                    </div>
+                    
+                    <div class="budget-item">
+                        <div class="budget-header">
+                            <span class="budget-title">Wants</span>
+                            <span class="budget-percent" id="wants-percent">30%</span>
+                        </div>
+                        <input type="range" class="budget-slider" id="wants-budget" min="0" max="100" value="30">
+                        <div class="budget-inputs">
+                            <input type="number" id="wants-amount" placeholder="Amount" value="13500" disabled>
+                            <input type="number" id="wants-percent-input" placeholder="Percentage" min="0" max="100" value="30">
+                        </div>
+                    </div>
+                    
+                    <div class="budget-item">
+                        <div class="budget-header">
+                            <span class="budget-title">Savings</span>
+                            <span class="budget-percent" id="savings-percent">20%</span>
+                        </div>
+                        <input type="range" class="budget-slider" id="savings-budget" min="0" max="100" value="20">
+                        <div class="budget-inputs">
+                            <input type="number" id="savings-amount" placeholder="Amount" value="9000" disabled>
+                            <input type="number" id="savings-percent-input" placeholder="Percentage" min="0" max="100" value="20">
+                        </div>
+                    </div>
+                    
+                    <div class="budget-total">
+                        Remaining: <span id="remaining-percent">0%</span>
+                    </div>
+                    
+                    <button id="save-budgets">
+                        <i class="fas fa-save"></i>
+                        Save Budgets
+                    </button>
+                </div>
+            </section>
+
+            <!-- Transactions View -->
+            <section id="transactions" class="view">
+                <div class="header">
+                    <h1>Transactions</h1>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fas fa-exchange-alt"></i>
+                        Add Transaction
+                    </h2>
+                    <div class="form-group">
+                        <label for="transaction-type">Type</label>
+                        <select id="transaction-type">
+                            <option value="income">Income</option>
+                            <option value="expense" selected>Expense</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="transaction-category">Category</label>
+                        <select id="transaction-category">
+                            <option value="salary">Salary</option>
+                            <option value="freelance">Freelance</option>
+                            <option value="investment">Investment</option>
+                            <option value="groceries" selected>Groceries</option>
+                            <option value="utilities">Utilities</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="dining">Dining</option>
+                            <option value="shopping">Shopping</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="transaction-amount">Amount (₹)</label>
+                        <input type="number" id="transaction-amount" placeholder="Enter amount" value="2450">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="transaction-note">Note</label>
+                        <input type="text" id="transaction-note" placeholder="Add a note" value="Grocery Shopping">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="transaction-date">Date</label>
+                        <input type="date" id="transaction-date" value="2023-08-30">
+                    </div>
+                    
+                    <button id="add-transaction">
+                        <i class="fas fa-plus"></i>
+                        Add Transaction
+                    </button>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fas fa-list"></i>
+                        All Transactions
+                    </h2>
+                    <table class="transaction-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Category</th>
+                                <th>Note</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="all-transactions">
+                            <tr>
+                                <td>2023-08-30</td>
+                                <td>Expense</td>
+                                <td>Groceries</td>
+                                <td>Grocery Shopping</td>
+                                <td class="negative">-₹2,450</td>
+                            </tr>
+                            <tr>
+                                <td>2023-08-28</td>
+                                <td>Income</td>
+                                <td>Freelance</td>
+                                <td>Freelance Payment</td>
+                                <td class="positive">+₹8,500</td>
+                            </tr>
+                            <tr>
+                                <td>2023-08-25</td>
+                                <td>Expense</td>
+                                <td>Utilities</td>
+                                <td>Electricity Bill</td>
+                                <td class="negative">-₹1,850</td>
+                            </tr>
+                            <tr>
+                                <td>2023-08-22</td>
+                                <td>Expense</td>
+                                <td>Dining</td>
+                                <td>Dinner Out</td>
+                                <td class="negative">-₹1,200</td>
+                            </tr>
+                            <tr>
+                                <td>2023-08-20</td>
+                                <td>Income</td>
+                                <td>Salary</td>
+                                <td>Monthly Salary</td>
+                                <td class="positive">+₹40,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Goals View -->
+            <section id="goals" class="view">
+                <div class="header">
+                    <h1>Financial Goals</h1>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fas fa-bullseye"></i>
+                        Create New Goal
+                    </h2>
+                    <div class="form-group">
+                        <label for="goal-name">Goal Name</label>
+                        <input type="text" id="goal-name" placeholder="e.g., New Car, Vacation" value="New Car">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="goal-type">Goal Type</label>
+                        <select id="goal-type">
+                            <option value="inflationAdjusted" selected>Inflation-Adjusted Target</option>
+                            <option value="targetAmount">Fixed Target Amount</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="goal-amount">Target Amount (₹)</label>
+                        <input type="number" id="goal-amount" placeholder="How much do you need?" value="800000">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="goal-years">Years to Achieve</label>
+                        <input type="number" id="goal-years" placeholder="How many years?" value="5">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="goal-inflation">Inflation Rate (%)</label>
+                        <input type="number" id="goal-inflation" value="4.7" step="0.1">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="goal-return">Expected Return (%)</label>
+                        <input type="number" id="goal-return" value="12" step="0.1">
+                    </div>
+                    
+                    <div id="goal-preview" class="goal-preview">
+                        <h3>Projection Preview</h3>
+                        <p>Monthly SIP needed: <span id="sip-amount">₹9,832</span></p>
+                        <p>Future value: <span id="future-value">₹10,12,432</span></p>
+                    </div>
+                    
+                    <button id="save-goal">
+                        <i class="fas fa-bullseye"></i>
+                        Save Goal
+                    </button>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fas fa-trophy"></i>
+                        Your Goals
+                    </h2>
+                    <div id="goals-list">
+                        <div class="goal-item">
+                            <h3>New Car</h3>
+                            <p>Target: ₹800,000 in 5 years</p>
+                            <p>Monthly SIP: ₹9,832</p>
+                            <p>Future Value: ₹1,012,432</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Export/Import View -->
+            <section id="export" class="view">
+                <div class="header">
+                    <h1>Export/Import Data</h1>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fas fa-file-export"></i>
+                        Export Data
+                    </h2>
+                    <p>Download a backup of your financial data</p>
+                    <button id="export-data">
+                        <i class="fas fa-download"></i>
+                        Export Data
+                    </button>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fas fa-file-import"></i>
+                        Import Data
+                    </h2>
+                    <div class="form-group">
+                        <label for="import-file">Select backup file</label>
+                        <input type="file" id="import-file" accept=".json">
+                    </div>
+                    <button id="import-data">
+                        <i class="fas fa-upload"></i>
+                        Import Data
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
